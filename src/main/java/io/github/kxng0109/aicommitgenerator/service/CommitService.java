@@ -28,9 +28,9 @@ public class CommitService {
             feat: (A new feature)
             fix: (A bug fix)
             refactor: (A code change that neither fixes a bug nor adds a feature)
-            docs: (Documentation-only changes)            
+            docs: (Documentation-only changes)
             test: (Adding missing tests or correcting existing tests)
-            style: (Changes that do not affect the meaning of the code: white-space, formatting, missing semi-colons, etc.)            
+            style: (Changes that do not affect the meaning of the code: white-space, formatting, missing semi-colons, etc.)
             chore: (Changes to the build process, auxiliary tools, or dependencies)
             
             3. Scope:
