@@ -10,6 +10,8 @@ import org.springframework.stereotype.Service;
 @Slf4j
 public class CommitService {
 
+    private final ChatClient chatClient;
+
     public final String SYSTEM_MESSAGE = """
             You are an expert software engineer and a strict maintainer of a large-scale project. You are reviewing a contribution and your sole task is to write the final commit message for it.
             Analyze the provided git diff and generate a single, professional commit message that adheres perfectly to the Conventional Commits specification.
@@ -57,8 +59,6 @@ public class CommitService {
             
             {diff}
             """;
-
-    private final ChatClient chatClient;
 
     public String generateMessage(String diff) {
         return chatClient.prompt()
