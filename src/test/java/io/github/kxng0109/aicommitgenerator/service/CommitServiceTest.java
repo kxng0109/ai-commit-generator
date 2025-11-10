@@ -1,7 +1,5 @@
 package io.github.kxng0109.aicommitgenerator.service;
 
-import io.github.kxng0109.aicommitgenerator.model.dto.CommitMessageRequest;
-import io.github.kxng0109.aicommitgenerator.model.dto.CommitMessageResponse;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -25,8 +23,8 @@ public class CommitServiceTest {
 
     @Test
     public void generateMessage_withValidDiff_should_returnAMessage() {
-        CommitMessageRequest commitMessageRequest = new CommitMessageRequest("a commit message");
-        CommitMessageResponse commitMessageResponse = new CommitMessageResponse("feat(test): this is a mock commit");
+        String commitMessage = "a commit message";
+        String generatedCommitMessage = "feat(test): this is a mock commit";
 
         ChatClient.ChatClientRequestSpec requestSpec = mock(ChatClient.ChatClientRequestSpec.class);
         ChatClient.CallResponseSpec callSpec = mock(ChatClient.CallResponseSpec.class);
@@ -35,12 +33,12 @@ public class CommitServiceTest {
         when(requestSpec.system(anyString())).thenReturn(requestSpec);
         when(requestSpec.user(anyString())).thenReturn(requestSpec);
         when(requestSpec.call()).thenReturn(callSpec);
-        when(callSpec.content()).thenReturn(commitMessageResponse.commitMessage());
+        when(callSpec.content()).thenReturn(generatedCommitMessage);
 
 
-        String response = commitService.generateMessage(commitMessageRequest.diff());
+        String response = commitService.generateMessage(commitMessage);
 
         assertNotNull(response);
-        assertEquals(commitMessageResponse.commitMessage(), response);
+        assertEquals(generatedCommitMessage, response);
     }
 }
